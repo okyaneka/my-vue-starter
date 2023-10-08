@@ -1,5 +1,20 @@
+<script lang="ts" setup>
+const coba = ref<any>()
+const elList = ref<any[]>([])
+const id = ref(1)
+</script>
+
 <template>
   <n-h1>Hello world!</n-h1>
+
+  <div class="flex gap-4">
+    <router-link to="/nsfw">
+      <n-button>🔞 NSFW</n-button>
+    </router-link>
+    <router-link to="/scraping">
+      <n-button>🌐 SCRAPE</n-button>
+    </router-link>
+  </div>
 
   <p-test class="text-blue-500" />
 
