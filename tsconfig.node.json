@@ -12,6 +12,6 @@
     "resolveJsonModule": true,
     "composite": true,
     "module": "ESNext",
-    "types": ["node", "./package.json"]
+    "types": ["node", "./package.json", "vite-plugin-vue-layouts/client"]
   }
 }

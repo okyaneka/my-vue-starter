@@ -7,21 +7,14 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    IRiUserFill: typeof import('~icons/ri/user-fill')['default']
-    IRiUserLine: typeof import('~icons/ri/user-line')['default']
     NCard: typeof import('naive-ui')['NCard']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NGlobalStyle: typeof import('naive-ui')['NGlobalStyle']
     NH1: typeof import('naive-ui')['NH1']
     NH2: typeof import('naive-ui')['NH2']
     NH3: typeof import('naive-ui')['NH3']
-    NH4: typeof import('naive-ui')['NH4']
-    NH5: typeof import('naive-ui')['NH5']
-    NH6: typeof import('naive-ui')['NH6']
-    NIcon: typeof import('naive-ui')['NIcon']
     NLayout: typeof import('naive-ui')['NLayout']
     NLayoutContent: typeof import('naive-ui')['NLayoutContent']
-    NLayoutHeader: typeof import('naive-ui')['NLayoutHeader']
     NLi: typeof import('naive-ui')['NLi']
     NP: typeof import('naive-ui')['NP']
     NText: typeof import('naive-ui')['NText']

@@ -9,11 +9,11 @@ import IconsResolver from 'unplugin-icons/resolver'
 import Layouts from 'vite-plugin-vue-layouts'
 import Pages from 'vite-plugin-pages'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
-// @ts-ignore
 import packageJson from './package.json'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/my-vue-starter',
   define: {
     APP_VERSION: JSON.stringify(packageJson.version),
     APP_NAME: JSON.stringify(packageJson.name)
