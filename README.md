@@ -1,52 +1,68 @@
-# storybook
+# Hello there 👋
 
-This template should help get you started developing with Vue 3 in Vite.
+This is my-vue-starter v0.0.0
 
-## Recommended IDE Setup
+## What's insides?
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+This app using:
 
-## Type Support for `.vue` Imports in TS
+- [Naive UI](https://www.naiveui.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Icondify Remix Icon](https://iconify.design/)
+- [VueUse](https://vueuse.org/)
+- [Pinia](https://pinia.vuejs.org/)
+- [Vue Router](https://router.vuejs.org/)
+- [Unplugin Auto Import](https://www.npmjs.com/package/unplugin-auto-import)
+- [Unplugin Vue Components](https://www.npmjs.com/package/unplugin-vue-components)
+- [Vite Plugin Vue Layouts](https://www.npmjs.com/package/vite-plugin-vue-layouts)
+- [Vite Plugin Pages](https://www.npmjs.com/package/vite-plugin-pages)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## How to
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+### Run dev
 
 ```sh
-npm install
+pnpm dev
 ```
 
-### Compile and Hot-Reload for Development
+### Build
 
 ```sh
-npm run dev
+pnpm build
 ```
 
-### Type-Check, Compile and Minify for Production
+## Directory Structure
 
-```sh
-npm run build
+```text
+/components
+/layouts
+/middlewares
+/models
+/views
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### `/components`
 
-```sh
-npm run test:unit
-```
+This directory is used for saving component files.
 
-### Lint with [ESLint](https://eslint.org/)
+### `/layouts`
 
-```sh
-npm run lint
-```
+This directory is used for saving layout files.
+
+### `/middlewares`
+
+This directory is used for saving middleware files.
+
+### `/models`
+
+This directory is used for saving model files.
+
+This models are include store function.
+
+### `/views`
+
+This directory is used for saving view files.
+
+This also generate route based on path created.
+
+**_nb: please visit the source for more info_**

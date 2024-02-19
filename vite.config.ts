@@ -9,9 +9,15 @@ import IconsResolver from 'unplugin-icons/resolver'
 import Layouts from 'vite-plugin-vue-layouts'
 import Pages from 'vite-plugin-pages'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+// @ts-ignore
+import packageJson from './package.json'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  define: {
+    APP_VERSION: JSON.stringify(packageJson.version),
+    APP_NAME: JSON.stringify(packageJson.name)
+  },
   plugins: [
     vue(),
     AutoImport({
@@ -31,13 +37,15 @@ export default defineConfig({
         }
       ],
       eslintrc: { enabled: true },
-      resolvers: [NaiveUiResolver()]
+      resolvers: [NaiveUiResolver()],
+      dirs: ['src/models', 'src/middlewares', 'src/plugins']
     }),
     Components({
       dts: 'src/components.d.ts',
       extensions: ['vue', 'md'],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       dirs: ['src/components'],
+      directoryAsNamespace: true,
       resolvers: [NaiveUiResolver(), IconsResolver()]
     }),
     Icons({

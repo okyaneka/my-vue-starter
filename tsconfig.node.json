@@ -8,8 +8,10 @@
     "playwright.config.*"
   ],
   "compilerOptions": {
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
     "composite": true,
     "module": "ESNext",
-    "types": ["node"]
+    "types": ["node", "./package.json"]
   }
 }

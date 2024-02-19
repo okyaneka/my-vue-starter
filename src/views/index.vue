@@ -1,24 +1,92 @@
+<script setup lang="ts">
+const version = APP_VERSION
+const name = APP_NAME
+
+function p() {
+  navigator.clipboard.writeText(document.body.innerHTML)
+}
+</script>
+
 <template>
-  <n-h1>Hello world!</n-h1>
+  <n-h1 @click="p">Hello there 👋</n-h1>
+  <n-p>This is {{ name }} v{{ version }}</n-p>
 
-  <p-test class="text-blue-500" />
+  <n-h2>What's insides?</n-h2>
+  <n-p>This app using:</n-p>
+  <n-ul class="list-disc list-outside">
+    <n-li><a target="_blank" href="https://www.naiveui.com/">Naive UI</a></n-li>
+    <n-li><a target="_blank" href="https://tailwindcss.com/">Tailwind CSS</a></n-li>
+    <n-li><a target="_blank" href="https://iconify.design/">Icondify Remix Icon</a></n-li>
+    <n-li><a target="_blank" href="https://vueuse.org/">VueUse </a></n-li>
+    <n-li><a target="_blank" href="https://pinia.vuejs.org/">Pinia</a></n-li>
+    <n-li><a target="_blank" href="https://router.vuejs.org/">Vue Router</a></n-li>
+    <n-li
+      ><a target="_blank" href="https://www.npmjs.com/package/unplugin-auto-import"
+        >Unplugin Auto Import</a
+      ></n-li
+    >
+    <n-li
+      ><a target="_blank" href="https://www.npmjs.com/package/unplugin-vue-components"
+        >Unplugin Vue Components</a
+      ></n-li
+    >
+    <n-li
+      ><a target="_blank" href="https://www.npmjs.com/package/vite-plugin-vue-layouts"
+        >Vite Plugin Vue Layouts</a
+      ></n-li
+    >
+    <n-li
+      ><a target="_blank" href="https://www.npmjs.com/package/vite-plugin-pages"
+        >Vite Plugin Pages</a
+      ></n-li
+    >
+  </n-ul>
 
-  <n-h1>Ini H1</n-h1>
-  <n-h2>Ini H2</n-h2>
-  <n-h3>Ini H3</n-h3>
-  <n-h4>Ini H4</n-h4>
-  <n-h5>Ini H5</n-h5>
-  <n-h6>Ini H6</n-h6>
-  <n-p>Ini icon</n-p>
-  <pre>ini kode</pre>
+  <n-h2>How to</n-h2>
+  <n-h3>Run dev</n-h3>
 
-  <n-text code> Code Code Code Code Code </n-text>
+  <n-card class="bg-gray-50" bordered>
+    <pre>
+pnpm dev      
+</pre
+    >
+  </n-card>
+  <n-h3>Build</n-h3>
 
-  <n-h1>Ini icon</n-h1>
+  <n-card class="bg-gray-50" bordered>
+    <pre>
+pnpm build
+</pre
+    >
+  </n-card>
 
-  <n-icon :size="123">
-    <i-ri-user-line />
-  </n-icon>
+  <n-h2>Directory Structure</n-h2>
 
-  <n-p>ini text biasa</n-p>
+  <n-card class="bg-gray-50" bordered>
+    <pre>
+/components
+/layouts
+/middlewares
+/models
+/views
+</pre
+    >
+  </n-card>
+
+  <n-h3>/components</n-h3>
+  <n-p>This directory is used for saving component files.</n-p>
+  <n-h3>/layouts</n-h3>
+  <n-p>This directory is used for saving layout files.</n-p>
+  <n-h3>/middlewares</n-h3>
+  <n-p>This directory is used for saving middleware files.</n-p>
+  <n-h3>/models</n-h3>
+  <n-p>This directory is used for saving model files.</n-p>
+  <n-p>This models are include store function.</n-p>
+  <n-h3>/views</n-h3>
+  <n-p>This directory is used for saving view files.</n-p>
+  <n-p>This also generate route based on path created.</n-p>
+
+  <n-p>
+    <n-text strong italic> nb: please visit the source for more info </n-text>
+  </n-p>
 </template>
