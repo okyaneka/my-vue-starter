@@ -1,14 +1,18 @@
 <script setup lang="ts">
 const version = APP_VERSION
 const name = APP_NAME
-
-function p() {
-  navigator.clipboard.writeText(document.body.innerHTML)
-}
 </script>
 
 <template>
-  <n-h1 @click="p">Hello there 👋</n-h1>
+  <n-h1>Hello there 👋</n-h1>
+  <a href="https://github.com/okyaneka/my-vue-starter" target="_blank">
+    <n-button size="small" color="#24292e">
+      View on Github
+      <template #icon>
+        <n-icon><i-ri-github-fill /></n-icon>
+      </template>
+    </n-button>
+  </a>
   <n-p>This is {{ name }} v{{ version }}</n-p>
 
   <n-h2>What's insides?</n-h2>

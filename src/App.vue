@@ -3,6 +3,11 @@ import type { GlobalThemeOverrides } from 'naive-ui'
 
 const themeOverrides = computed<GlobalThemeOverrides>(() => ({
   common: {
+    primaryColor: '#595ea6',
+    primaryColorHover: '#6A6EAF',
+    primaryColorPressed: '#6A6EAF',
+    primaryColorSuppl: '#595ea6',
+
     fontFamily: '"Inter", sans-serif',
     fontFamilyMono: '"Nanum Gothic Coding", monospace',
     fontSizeHuge: '2rem',
@@ -34,7 +39,7 @@ const themeOverrides = computed<GlobalThemeOverrides>(() => ({
 
 <style lang="postcss">
 a {
-  @apply text-primary !important;
+  @apply text-primary no-underline;
 }
 
 a:hover {
