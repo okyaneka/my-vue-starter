@@ -8,7 +8,7 @@ function p() {
 </script>
 
 <template>
-  <n-h1 @click="p">Hello there 👋</n-h1>
+  <n-h1 @click="p">Hello there 👋 tes</n-h1>
   <n-p>This is {{ name }} v{{ version }}</n-p>
 
   <n-h2>What's insides?</n-h2>
