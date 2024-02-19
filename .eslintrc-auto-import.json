@@ -79,6 +79,13 @@
     "watch": true,
     "watchEffect": true,
     "watchPostEffect": true,
-    "watchSyncEffect": true
+    "watchSyncEffect": true,
+    "ExtractDefaultPropTypes": true,
+    "ExtractPropTypes": true,
+    "ExtractPublicPropTypes": true,
+    "WritableComputedRef": true,
+    "middlewares": true,
+    "sampleMiddleware": true,
+    "useCounterStore": true
   }
 }

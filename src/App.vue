@@ -32,6 +32,20 @@ const themeOverrides = computed<GlobalThemeOverrides>(() => ({
   </n-config-provider>
 </template>
 
+<style lang="postcss">
+a {
+  @apply text-primary !important;
+}
+
+a:hover {
+  @apply underline;
+}
+
+ul {
+  @apply list-disc list-outside;
+}
+</style>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nanum+Gothic+Coding:wght@400;700&display=swap');
 </style>
