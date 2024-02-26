@@ -13,7 +13,9 @@ const name = APP_NAME
       </template>
     </n-button>
   </a>
-  <n-p>This is {{ name }} v{{ version }}</n-p>
+  <router-link to="/nsfw">
+    <n-p>This is {{ name }} v{{ version }}</n-p>
+  </router-link>
 
   <n-h2>What's insides?</n-h2>
   <n-p>This app using:</n-p>
