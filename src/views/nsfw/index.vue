@@ -64,7 +64,7 @@ function generateImage() {
     urls.value.push(base)
     localStorage.setItem('url', JSON.stringify(urls.value))
   }
-  for (let index = 0; index < (amount.value ?? 10); index++) {
+  for (let index = 0; index < (amount.value ?? 100); index++) {
     images.value.push({
       hd: `${base}/${index + 1}.jpg`,
       thumbnail: `${base}/p=160x200/${index + 1}.jpg`
@@ -95,8 +95,20 @@ function clearUrls() {
   localStorage.removeItem('url')
 }
 function deleteUrl(index: number) {
-  urls.value.splice(index, 1)
+  // const p = urls.value.splice(index, 1)
+  // alert(p)
+  urls.value.pop()
   localStorage.setItem('url', JSON.stringify(urls.value))
+}
+function backToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+function goToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+}
+function clearField() {
+  baseUrl.value = ''
+  amount.value = undefined
 }
 onMounted(() => {
   const url = localStorage.getItem('url')
@@ -106,7 +118,22 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="p-4 border rounded border-solid border-gray-400 mb-4">
+  <div class="fixed right-8 bottom-8 z-10">
+    <div class="flex flex-col gap-2">
+      <n-button circle type="primary" class="" @click="backToTop">
+        <template #icon>
+          <n-icon><i-ri-arrow-up-line /></n-icon>
+        </template>
+      </n-button>
+      <n-button circle type="primary" class="" @click="goToBottom">
+        <template #icon>
+          <n-icon><i-ri-arrow-down-line /></n-icon>
+        </template>
+      </n-button>
+    </div>
+  </div>
+
+  <div v-if="urls.length" class="p-4 border rounded border-solid border-gray-400 mb-4">
     <div class="mb-4">
       <n-button size="small" type="error" @click="clearUrls">CLEAR</n-button>
     </div>
@@ -115,7 +142,6 @@ onMounted(() => {
         class="p-2 h-56 border rounded border-solid border-gray-400 relative"
         :class="{ 'bg-blue-200': url == baseUrl }"
         v-for="(url, index) in urls"
-        @click="salin(url)"
       >
         <n-button
           class="absolute top-2 right-2"
@@ -128,7 +154,11 @@ onMounted(() => {
             <i-ri-close-line />
           </template>
         </n-button>
-        <img class="w-full h-full object-cover object-top" :src="`${url}/p=160x200/1.jpg`" />
+        <img
+          class="w-full h-full object-cover object-top"
+          :src="`${url}/p=160x200/1.jpg`"
+          @click="salin(url)"
+        />
       </div>
     </div>
   </div>
@@ -137,13 +167,19 @@ onMounted(() => {
       <div class="flex flex-wrap gap-4">
         <input type="text" v-model="baseUrl" placeholder="url" />
         <input type="number" v-model="amount" placeholder="jumlah" />
-        <button type="submit">Generate</button>
+        <n-button round attr-type="submit" type="primary">Generate</n-button>
+        <n-button round type="error" @click="clearField">Clear</n-button>
       </div>
     </form>
     <div>{{ parsed }}</div>
   </div>
-  <div class="grid grid-cols-3">
-    <div v-for="(item, key) in images" :key="item.hd" class="h-64">
+  <div class="grid grid-cols-3 gap-4">
+    <div
+      v-for="(item, key) in images"
+      :key="item.hd"
+      class="h-64 p-2 border rounded border-solid border-gray-400 relative"
+    >
+      <div class="absolute">{{ key + 1 }}</div>
       <!-- <div
         class="absolute left-0 top-0 flex justify-center items-center h-5 w-5 rounded-full text-xs"
       >
