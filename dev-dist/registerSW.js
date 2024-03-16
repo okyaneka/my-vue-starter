@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) navigator.serviceWorker.register('/my-vue-starter/dev-sw.js?dev-sw', { scope: '/my-vue-starter/', type: 'classic' })
