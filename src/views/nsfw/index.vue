@@ -65,6 +65,7 @@ function generateImage() {
     localStorage.setItem('url', JSON.stringify(urls.value))
   }
   if (!file_type.value) file_type.value = url?.type || baseUrl.value.split('.').pop() || 'jpg'
+  else if (url) url.type = file_type.value
   for (let index = 0; index < (amount.value ?? 100); index++) {
     images.value.push({
       hd: `${base}/${index + 1}.${file_type.value}`,
@@ -109,6 +110,7 @@ function goToBottom() {
 }
 function clearField() {
   baseUrl.value = ''
+  file_type.value = undefined
   amount.value = undefined
 }
 onMounted(() => {
