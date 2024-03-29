@@ -7,6 +7,9 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    IRiArrowDownLine: typeof import('~icons/ri/arrow-down-line')['default']
+    IRiArrowUpLine: typeof import('~icons/ri/arrow-up-line')['default']
+    IRiCloseLine: typeof import('~icons/ri/close-line')['default']
     IRiGithubFill: typeof import('~icons/ri/github-fill')['default']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
@@ -24,6 +27,8 @@ declare module 'vue' {
     NLayoutContent: typeof import('naive-ui')['NLayoutContent']
     NLi: typeof import('naive-ui')['NLi']
     NP: typeof import('naive-ui')['NP']
+    NRadio: typeof import('naive-ui')['NRadio']
+    NRadioGroup: typeof import('naive-ui')['NRadioGroup']
     NResult: typeof import('naive-ui')['NResult']
     NSpace: typeof import('naive-ui')['NSpace']
     NTable: typeof import('naive-ui')['NTable']
