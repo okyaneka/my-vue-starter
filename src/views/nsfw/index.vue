@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { c } from 'naive-ui'
-
 // const images = computed(() => {
 //   const images = []
 //   for (let index = 0; index < 100; index++) {
@@ -10,7 +8,7 @@ import { c } from 'naive-ui'
 //   }
 //   return images
 // })
-const urls = ref<string[]>([
+const urls = ref<{ base: string; type: string }[]>([
   // 'http://static12.hentai-cosplays.com/upload/20230706/336/343464'
   // 'http://static12.hentai-cosplays.com/upload/20230712/337/344134',
   // 'http://static12.hentai-cosplays.com/upload/20230714/337/344232',
@@ -49,6 +47,7 @@ const urls = ref<string[]>([
 const images = ref<{ thumbnail: string; hd: string }[]>([])
 const baseUrl = ref<string>()
 const amount = ref<number>()
+const file_type = ref<string>()
 
 const parsed = computed(() => {
   if (!baseUrl.value) return
@@ -60,14 +59,16 @@ function generateImage() {
   if (!baseUrl.value) return
   images.value = []
   const base = baseUrl.value.split('/').slice(0, 7).join('/')
-  if (!urls.value.includes(base)) {
-    urls.value.push(base)
+  const url = urls.value.find((v) => v.base.includes(base))
+  if (!url) {
+    urls.value.push({ base, type: baseUrl.value.split('.').pop() || 'jpg' })
     localStorage.setItem('url', JSON.stringify(urls.value))
   }
+  file_type.value = url?.type || baseUrl.value.split('.').pop() || 'jpg'
   for (let index = 0; index < (amount.value ?? 100); index++) {
     images.value.push({
-      hd: `${base}/${index + 1}.jpg`,
-      thumbnail: `${base}/p=160x200/${index + 1}.jpg`
+      hd: `${base}/${index + 1}.${file_type.value}`,
+      thumbnail: `${base}/p=160x200/${index + 1}.${file_type.value}`
     })
   }
 }
@@ -87,7 +88,7 @@ function salin(text: string) {
 function download(link: string) {
   const a = document.createElement('a')
   a.href = link
-  a.download = 'image.jpg'
+  a.download = `image.${file_type.value}`
   a.click()
 }
 function clearUrls() {
@@ -97,7 +98,7 @@ function clearUrls() {
 function deleteUrl(index: number) {
   // const p = urls.value.splice(index, 1)
   // alert(p)
-  urls.value.pop()
+  urls.value.splice(index, 1)
   localStorage.setItem('url', JSON.stringify(urls.value))
 }
 function backToTop() {
@@ -112,7 +113,12 @@ function clearField() {
 }
 onMounted(() => {
   const url = localStorage.getItem('url')
-  alert(url)
+  if (url) {
+    const p = JSON.parse(url)
+    if (typeof p[0] == 'string') urls.value = p.map((v: any) => ({ base: v, type: 'jpg' }))
+    else urls.value = p
+  }
+
   if (url) urls.value = JSON.parse(url)
 })
 </script>
@@ -140,7 +146,7 @@ onMounted(() => {
     <div class="grid grid-cols-4 gap-4">
       <div
         class="p-2 h-56 border rounded border-solid border-gray-400 relative"
-        :class="{ 'bg-blue-200': url == baseUrl }"
+        :class="{ 'bg-blue-200': url.base == baseUrl }"
         v-for="(url, index) in urls"
       >
         <n-button
@@ -156,8 +162,8 @@ onMounted(() => {
         </n-button>
         <img
           class="w-full h-full object-cover object-top"
-          :src="`${url}/p=160x200/1.jpg`"
-          @click="salin(url)"
+          :src="`${url.base}/p=160x200/1.${url.type}`"
+          @click="salin(url.base)"
         />
       </div>
     </div>
@@ -167,6 +173,13 @@ onMounted(() => {
       <div class="flex flex-wrap gap-4">
         <input type="text" v-model="baseUrl" placeholder="url" />
         <input type="number" v-model="amount" placeholder="jumlah" />
+        <n-radio-group v-model:value="file_type" name="radiogroup">
+          <n-space>
+            <n-radio value="jpg" label="jpg" />
+            <n-radio value="jpeg" label="jpeg" />
+            <n-radio value="png" label="png" />
+          </n-space>
+        </n-radio-group>
         <n-button round attr-type="submit" type="primary">Generate</n-button>
         <n-button round type="error" @click="clearField">Clear</n-button>
       </div>
