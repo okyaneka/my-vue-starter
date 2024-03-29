@@ -55,17 +55,23 @@ const parsed = computed(() => {
   return
 })
 
-function generateImage() {
+function generateImage(update: boolean = false) {
   if (!baseUrl.value) return
   images.value = []
   const base = baseUrl.value.split('/').slice(0, 7).join('/')
   const url = urls.value.find((v) => v.base.includes(base))
   if (!url) {
-    urls.value.push({ base, type: baseUrl.value.split('.').pop() || 'jpg' })
+    file_type.value = baseUrl.value.split('.').pop() || 'jpg'
+    urls.value.push({ base, type: file_type.value })
     localStorage.setItem('url', JSON.stringify(urls.value))
+  } else {
+    if (update) {
+      if (file_type.value) url.type = file_type.value
+      localStorage.setItem('url', JSON.stringify(urls.value))
+    } else {
+      file_type.value = url.type
+    }
   }
-  if (!file_type.value) file_type.value = url?.type || baseUrl.value.split('.').pop() || 'jpg'
-  else if (url) url.type = file_type.value
   for (let index = 0; index < (amount.value ?? 100); index++) {
     images.value.push({
       hd: `${base}/${index + 1}.${file_type.value}`,
@@ -169,7 +175,7 @@ onMounted(() => {
     </div>
   </div>
   <div class="p-4 border rounded mb-4 border-solid border-gray-400">
-    <form @submit.prevent="generateImage">
+    <form @submit.prevent="generateImage(true)">
       <div class="flex flex-wrap gap-4">
         <input type="text" v-model="baseUrl" placeholder="url" />
         <input type="number" v-model="amount" placeholder="jumlah" />
