@@ -118,8 +118,6 @@ onMounted(() => {
     if (typeof p[0] == 'string') urls.value = p.map((v: any) => ({ base: v, type: 'jpg' }))
     else urls.value = p
   }
-
-  if (url) urls.value = JSON.parse(url)
 })
 </script>
 
