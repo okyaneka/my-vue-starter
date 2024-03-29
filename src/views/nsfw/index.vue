@@ -64,7 +64,7 @@ function generateImage() {
     urls.value.push({ base, type: baseUrl.value.split('.').pop() || 'jpg' })
     localStorage.setItem('url', JSON.stringify(urls.value))
   }
-  file_type.value = url?.type || baseUrl.value.split('.').pop() || 'jpg'
+  if (!file_type.value) file_type.value = url?.type || baseUrl.value.split('.').pop() || 'jpg'
   for (let index = 0; index < (amount.value ?? 100); index++) {
     images.value.push({
       hd: `${base}/${index + 1}.${file_type.value}`,
